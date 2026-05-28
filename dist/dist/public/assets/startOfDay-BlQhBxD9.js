@@ -1,1 +1,0 @@
-import{b5 as f,aM as r}from"./index-DEfmpLK6.js";function u(s,t){const a=f(),n=t?.weekStartsOn??t?.locale?.options?.weekStartsOn??a.weekStartsOn??a.locale?.options?.weekStartsOn??0,e=r(s),o=e.getDay(),c=(o<n?7:0)+o-n;return e.setDate(e.getDate()-c),e.setHours(0,0,0,0),e}function i(s){const t=r(s);return t.setHours(0,0,0,0),t}export{i as a,u as s};
