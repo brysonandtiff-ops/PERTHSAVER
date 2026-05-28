@@ -1,0 +1,16 @@
+useSidebar must be used within a SidebarProvider.
+
+Error: useSidebar must be used within a SidebarProvider.
+    at useSidebar (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/src/components/ui/sidebar.tsx:38:11)
+    at MobileSidebarTrigger (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/src/components/Sidebar.tsx:390:39)
+    at Object.react_stack_bottom_frame (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:18509:20)
+    at renderWithHooks (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:5654:24)
+    at updateFunctionComponent (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:7475:21)
+    at beginWork (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:8525:20)
+    at runWithFiberInDEV (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:997:72)
+    at performUnitOfWork (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:12561:98)
+    at workLoopSync (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:12424:43)
+    at renderRootSync (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=63c4b2c2:12408:13)
+Reload Page
+Report Issue
+Go Home

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#A855F7" />
+    <meta name="description" content="Perth's #1 AI-powered savings platform. Save $15K-25K annually with AI-optimized strategies for groceries, fuel, utilities, investments, tax & fleet management. Professional fintech app with Claude 4.5 + Gemini + GPT-5." />
+    <meta name="application-name" content="Perth Saver" />
+    <meta name="apple-mobile-web-app-title" content="Perth Saver" />
+    <meta name="msapplication-TileColor" content="#A855F7" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <title>Perth Saver - AI-Powered Savings Platform | Save $15K-25K</title>
+    
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/app-icon.svg" />
+
+    <meta property="og:title" content="Perth Saver - Save $15K-25K with AI" />
+    <meta property="og:description" content="AI-powered savings platform for Perth families & businesses. Optimize groceries, fuel, utilities, investments, taxes & fleet costs. Multi-model AI financial coach." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/attached_assets/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@replit" />
+    <meta name="twitter:title" content="Perth Saver - Save $15K-25K with AI" />
+    <meta name="twitter:description" content="AI-powered savings platform for Perth families & businesses. Professional fintech app with personalized savings strategies for groceries, fuel, utilities, investments & taxes." />
+    <meta name="twitter:image" content="/attached_assets/logo.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/app-icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Register Service Worker for offline support
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+              // Check for updates periodically
+              setInterval(() => {
+                reg.update();
+              }, 60000); // Check every minute
+            });
+        });
+        
+        // Listen for controller change (app updated)
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+      }
+      
+      // Install prompt for PWA
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+      });
+      
+      // Make install prompt available globally
+      window.installApp = () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted PWA install');
+            }
+            deferredPrompt = null;
+          });
+        }
+      };
+    </script>
+  </body>
+</html>

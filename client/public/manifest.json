@@ -1,0 +1,97 @@
+{
+  "name": "Perth Saver - Save on Everything",
+  "short_name": "Perth Saver",
+  "description": "AI-powered savings platform for Perth households & businesses. Save $50K-100K annually on groceries, utilities, investments, tax deductions and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#06B6D4",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23050508' width='540' height='720'/><rect fill='%2306B6D4' x='20' y='60' width='500' height='100' rx='8'/><text x='270' y='115' font-size='24' fill='white' text-anchor='middle' font-weight='bold'>Save Up To 80%</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect fill='%23050508' width='1280' height='720'/><rect fill='%2306B6D4' x='40' y='100' width='1200' height='200' rx='12'/><text x='640' y='250' font-size='48' fill='white' text-anchor='middle' font-weight='bold'>Perth Saver Platform</text></svg>",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Deals",
+      "short_name": "Deals",
+      "description": "Find grocery deals across Perth stores",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/app-icon.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View your savings & analytics",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "/app-icon.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Price Alerts",
+      "short_name": "Alerts",
+      "description": "Track product prices",
+      "url": "/alerts",
+      "icons": [
+        {
+          "src": "/app-icon.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

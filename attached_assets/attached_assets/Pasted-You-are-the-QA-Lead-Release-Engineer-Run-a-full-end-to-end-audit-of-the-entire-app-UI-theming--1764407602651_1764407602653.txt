@@ -1,0 +1,69 @@
+You are the QA Lead + Release Engineer. Run a full end-to-end audit of the entire app: UI, theming, text, workflows, build/deploy, and runtime behavior. Do not assume anything works. Verify.
+
+DELIVERABLE:
+Produce a “Release Readiness Report” with (1) Findings, (2) Fixes applied with file diffs, (3) Proof/verification steps, (4) Remaining risks.
+
+SCOPE (check every item):
+1) UI/THEME SYSTEM
+- Confirm one source of truth for tokens (colors, typography, spacing, radii, shadows).
+- Find and eliminate hardcoded colors/styles that bypass tokens.
+- Validate contrast/readability in dark + light (headers, footers, buttons, forms, cards, alerts).
+- Confirm theme changes propagate to every route and component.
+- Validate logo/icon rendering on all backgrounds, sizes, and DPR.
+
+2) TEXT + CONTENT
+- Audit every screen for broken copy, overflow, truncation, bad casing, missing labels, placeholder text, and inconsistent terms.
+- Confirm empty/error/loading states are present and styled.
+
+3) WORKFLOWS (FUNCTIONAL)
+- List all user journeys (happy path + edge cases) and test each:
+  - onboarding, auth (if any), search, save/favorites, pricing flows, settings, notifications, etc.
+- Validate forms: validation, error messaging, disabled states, retries, timeouts.
+- Confirm navigation: back behavior, deep links, refresh, route guards.
+
+4) DATA + STATE
+- Verify state management consistency (no stale state on route change).
+- Confirm localStorage/session usage + migrations (theme prefs, user prefs).
+- Verify API error handling and offline behavior.
+
+5) PERFORMANCE
+- Lighthouse/metrics: slow screens, large bundles, render blocking CSS, image sizes.
+- Remove unnecessary re-renders, fix expensive lists, add virtualization where needed.
+
+6) PWA / CACHING / UPDATES
+- Confirm service worker behavior:
+  - dev: disabled
+  - prod: correct update lifecycle and no stale CSS/JS
+- Confirm cache invalidation strategy and “new version available” UX.
+
+7) BUILD / DEPLOY PIPELINE
+- Run clean build from scratch (delete node_modules + lockfile if needed, reinstall, build).
+- Confirm env vars are present and documented.
+- Confirm no runtime errors in console on fresh load.
+
+8) SECURITY / SAFETY BASELINE
+- No secrets in client.
+- Validate input sanitization where needed.
+- Confirm dependency vulnerabilities are checked and summarized.
+
+HOW TO EXECUTE (required evidence):
+- Add a temporary /debug/audit page that shows:
+  - active theme + token values
+  - environment (dev/prod)
+  - service worker status + cache keys
+  - build/version id
+- Add automated checks:
+  - ESLint + TypeScript checks
+  - unit tests for theme provider + critical utils
+  - basic E2E smoke tests for top flows (Playwright/Cypress)
+- Provide a “Test Run Log”: commands executed + results + screenshots/notes of any failures.
+
+RULES:
+- If you find an issue, fix it immediately or clearly mark it as a blocker with a proposed fix.
+- No vague statements. Every claim must be backed by a check, a path, or a repro step.
+- Return the report in a numbered structure with severity tags (BLOCKER / MAJOR / MINOR).
+If your builder tends to “say it did it” without proof, add this enforcement line at the top:
+
+text
+Copy code
+Any fix is invalid unless you provide: exact file path, exact code diff, and the verification step that confirms it is resolved.

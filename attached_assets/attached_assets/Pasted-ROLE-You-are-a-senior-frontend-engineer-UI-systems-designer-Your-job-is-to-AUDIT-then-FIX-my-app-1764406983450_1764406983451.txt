@@ -1,0 +1,74 @@
+ROLE: You are a senior frontend engineer + UI systems designer. Your job is to AUDIT then FIX my app’s theming and visual consistency. Do not hand-wave. Make changes only where you can justify the root cause.
+
+GOAL:
+- Every theme change must reliably reflect in the live preview immediately.
+- Colors, typography, spacing, header/footer, cards, buttons, forms, and icons must match the design system across ALL pages.
+- No “it says done but nothing changed”.
+
+NON-NEGOTIABLES (acceptance tests):
+1) Theme toggle changes the UI within 1 second without needing a restart.
+2) Refresh does NOT revert the theme (unless user explicitly resets).
+3) No page uses hardcoded colors that bypass theme tokens (except rare, documented exceptions).
+4) Logo displays correctly everywhere (correct sizing, transparent background, correct contrast).
+5) Header/footer match across routes and do not randomly change styling.
+6) No mixed “old theme” elements remain after change.
+
+STEP 1 — INVENTORY (report first, then fix):
+- List all theming sources in the codebase:
+  a) CSS variables / global CSS tokens
+  b) Tailwind config (if used) and any hardcoded classes
+  c) Theme provider logic (context/hooks) + localStorage keys
+  d) Service Worker / PWA caching that could block CSS/JS updates
+  e) Any per-page stylesheets or inline styles
+- Produce a “Theme Wiring Map” showing:
+  Source of truth → propagation path → what components read.
+
+STEP 2 — DIAGNOSE WHY CHANGES DON’T SHOW:
+- Check if a Service Worker is active and caching CSS/JS.
+- Confirm whether preview is showing a production build with SW enabled.
+- Verify HMR/dev server is used for development.
+- Confirm localStorage theme values aren’t overriding new defaults.
+- Provide the exact root cause(s) with file paths.
+
+STEP 3 — APPLY FIXES (must include code diffs):
+A) Development mode rules:
+- Disable service worker registration in development builds.
+- Add a visible “DEV: SW disabled” note in console logs.
+
+B) Production mode rules:
+- Ensure SW update flow is correct (skipWaiting/clients.claim and cache versioning).
+- Add a “New version available → Refresh” UI toast.
+- Ensure CSS/JS are network-first (or at minimum not stale).
+
+C) Theme tokens:
+- Consolidate to ONE theming method:
+  Option 1: CSS variables as tokens and Tailwind mapped to them.
+  Option 2: Tailwind palette only (remove CSS token usage).
+- Remove hardcoded hex colors that fight the system.
+- Ensure dark mode and contrast are WCAG reasonable.
+
+D) UI consistency:
+- Build a shared Layout component used by every route (header/footer/sidebar).
+- Normalize common components (Button, Card, Input, Modal, Nav).
+- Fix spacing/typography inconsistencies.
+
+E) Asset correctness:
+- Ensure logo is imported once and used everywhere from a single source.
+- Fix sizing constraints, image rendering, and fallback.
+
+STEP 4 — VERIFICATION (must be executable):
+- Provide a checklist + exact clicks to verify on mobile + desktop.
+- Provide console checks to confirm SW status and theme tokens applied.
+- Add a temporary “Theme Debug Panel” (only in dev) that shows active theme, token values, and storage keys.
+
+OUTPUT FORMAT:
+1) Findings (bullet list, with file paths)
+2) Root causes (ranked by impact)
+3) Fix plan (ordered)
+4) Code changes (diffs / exact snippets per file)
+5) Verification checklist
+If you want an even more aggressive version that forces it to “hunt everything wrong” visually, add this line near the top:
+
+text
+Copy code
+Also create a /debug/theme route that renders ALL UI primitives and screens in one place (buttons, inp

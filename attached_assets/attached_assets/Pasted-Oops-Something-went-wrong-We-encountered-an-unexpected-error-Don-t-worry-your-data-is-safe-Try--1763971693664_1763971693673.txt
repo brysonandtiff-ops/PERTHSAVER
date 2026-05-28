@@ -1,0 +1,20 @@
+Oops! Something went wrong
+We encountered an unexpected error. Don't worry, your data is safe. Try reloading the page or return to the home screen.
+
+Show error details (dev only)
+Cannot read properties of null (reading 'useEffect')
+
+TypeError: Cannot read properties of null (reading 'useEffect')
+    at exports.useEffect (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KMU3Z7QX.js?v=ee3e46c1:923:35)
+    at QueryClientProvider (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=ee3e46c1:2750:9)
+    at Object.react_stack_bottom_frame (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:18509:20)
+    at renderWithHooks (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:5654:24)
+    at updateFunctionComponent (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:7475:21)
+    at beginWork (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:8525:20)
+    at runWithFiberInDEV (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:997:72)
+    at performUnitOfWork (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:12561:98)
+    at workLoopSync (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:12424:43)
+    at renderRootSync (https://fd9e0531-abe9-4514-8045-66b4d0f8bdc5-00-21lzcg1qmezaw.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-dom_client.js?v=0f8e3a57:12408:13)
+Reload Page
+Report Issue
+Go Home
