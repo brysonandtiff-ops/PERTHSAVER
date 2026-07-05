@@ -16,3 +16,10 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# PRISM Auto evidence
+evidence/prism_auto/
+evidence/bad_take_git_guard/
+evidence/bad_take_doctor/
+evidence/bad_take_gitwork/
+
