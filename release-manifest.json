@@ -1,0 +1,37 @@
+{
+  "product": "PerthSaver",
+  "repository": "brysonandtiff-ops/PERTHSAVER",
+  "releaseSha": null,
+  "stage": "prototype",
+  "coreFlow": "Create a household profile, compare Perth prices and deals, plan spending, track bills and savings, and receive local cost-saving guidance.",
+  "commands": {
+    "install": "npm install",
+    "verify": "npm run verify:production",
+    "build": "npm run build"
+  },
+  "deployment": {
+    "provider": "unverified",
+    "status": "not-configured",
+    "evidence": null
+  },
+  "evidence": {
+    "typecheck": "not-run",
+    "lint": "not-applicable",
+    "unit": "not-run",
+    "e2e": "not-run",
+    "security": "not-run",
+    "realDevice": "not-run",
+    "humanAcceptance": "not-run"
+  },
+  "truth": {
+    "usesMockData": true,
+    "hasSimulatedFlows": true,
+    "knownLimitations": [
+      "Live grocery, FuelWatch, utility, rebate and promotion data provenance is not yet frozen.",
+      "Installed payment and AI dependencies do not prove every integration is active.",
+      "Financial tools are general information and require clear non-advice wording."
+    ]
+  },
+  "nextMilestone": "Launch one source-backed Perth MVP with freshness labels, verified authentication and a complete compare-to-savings journey.",
+  "updatedAt": "2026-07-17T10:23:00+08:00"
+}
