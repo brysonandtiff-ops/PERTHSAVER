@@ -45,11 +45,11 @@ async function getCredentials() {
   };
 }
 
-export async function getStripeSecretKey() {
+export async function getStripeSecretKey(): Promise<string> {
   if (process.env.STRIPE_SECRET_KEY) {
     return process.env.STRIPE_SECRET_KEY;
   }
-  return await getCredentials().catch(() => "");
+  return await getCredentials().then(c => c.secretKey).catch(() => "");
 }
 
 export async function getStripePublishableKey() {

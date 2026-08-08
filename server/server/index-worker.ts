@@ -1,3 +1,4 @@
+// @ts-ignore
 import { httpServerHandler } from "cloudflare:node";
 import { createServer } from "node:http";
 import { app } from "./app";
