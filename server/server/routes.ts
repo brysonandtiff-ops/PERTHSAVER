@@ -169,7 +169,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/stripe/config", async (req, res) => {
     try {
       const publishableKey = await getStripePublishableKey();
-      res.json({ publishableKey });
+      if (!publishableKey) {
+        return res.status(503).json({
+          error: "Stripe payment gateway is not configured for this environment.",
+          configured: false,
+          publishableKey: "",
+        });
+      }
+      res.json({
+        publishableKey,
+        configured: true,
+        mode: publishableKey.startsWith("pk_live") ? "live" : "test",
+      });
     } catch (error) {
       res.status(500).json({ error: "Failed to get Stripe config" });
     }
@@ -697,7 +708,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { getSuburbs } = await import('./fuelwatch');
       const suburbs = await getSuburbs();
-      res.json({ suburbs });
+      res.json({
+        suburbs,
+        source: 'FuelWatch WA',
+        updatedAt: new Date().toISOString(),
+        count: suburbs.length,
+      });
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch suburbs" });
     }

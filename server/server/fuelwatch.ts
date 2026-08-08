@@ -187,20 +187,63 @@ function getFuelTypeName(fuelType: number): string {
 
 // Get suburbs list for autocomplete
 export async function getSuburbs(): Promise<string[]> {
+  const fallbackSuburbs = [
+    'Applecross', 'Armadale', 'Balcatta', 'Bayswater', 'Belmont',
+    'Cannington', 'Claremont', 'Cockburn Central', 'Cottesloe', 'Duncraig',
+    'Ellenbrook', 'Fremantle', 'Innaloo', 'Joondalup', 'Kalamunda',
+    'Karrinyup', 'Leederville', 'Maddington', 'Mandurah', 'Melville',
+    'Midland', 'Morley', 'Mount Lawley', 'Nedlands', 'Osborne Park',
+    'Perth', 'Rockingham', 'Scarborough', 'South Perth', 'Stirling',
+    'Subiaco', 'Swanbourne', 'Victoria Park', 'Wanneroo', 'Willetton',
+  ];
+
   try {
-    const response = await fetch('https://www.fuelwatch.wa.gov.au/api/sites/suburbs');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const response = await fetch('https://www.fuelwatch.wa.gov.au/api/sites/suburbs', {
+      signal: controller.signal,
+      headers: { Accept: 'application/json' },
+    });
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
-      throw new Error('Failed to fetch suburbs');
+      throw new Error(`FuelWatch suburbs API HTTP ${response.status}`);
     }
+
     const data = await response.json();
-    return data.suburbs || [];
-  } catch (error) {
-    console.error('[FuelWatch] Error fetching suburbs:', error);
-    // Return common Perth suburbs as fallback
-    return [
-      'Perth', 'Fremantle', 'Joondalup', 'Rockingham', 'Mandurah',
-      'Midland', 'Armadale', 'Scarborough', 'Subiaco', 'Victoria Park',
-      'Morley', 'Cannington', 'Cockburn', 'Wanneroo', 'Stirling',
-    ];
+    let rawSuburbs: string[] = [];
+
+    if (Array.isArray(data)) {
+      rawSuburbs = data.map((item: any) =>
+        typeof item === 'string' ? item : item?.location || item?.name || ''
+      );
+    } else if (data && Array.isArray(data.suburbs)) {
+      rawSuburbs = data.suburbs;
+    }
+
+    const formatted = Array.from(
+      new Set(
+        rawSuburbs
+          .filter(Boolean)
+          .map((s: string) =>
+            s
+              .toLowerCase()
+              .split(' ')
+              .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+              .join(' ')
+          )
+      )
+    ).sort();
+
+    if (formatted.length === 0) {
+      console.log('[FuelWatch] Upstream returned empty suburbs list, using Perth fallbacks');
+      return fallbackSuburbs;
+    }
+
+    return formatted;
+  } catch (error: any) {
+    console.error('[FuelWatch] Error fetching suburbs:', error?.message || error);
+    return fallbackSuburbs;
   }
 }

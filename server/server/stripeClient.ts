@@ -52,9 +52,12 @@ export async function getStripeSecretKey(): Promise<string> {
   return await getCredentials().then(c => c.secretKey).catch(() => "");
 }
 
-export async function getStripePublishableKey() {
+export async function getStripePublishableKey(): Promise<string> {
   if (process.env.STRIPE_PUBLISHABLE_KEY) {
     return process.env.STRIPE_PUBLISHABLE_KEY;
+  }
+  if (process.env.PUBLIC_STRIPE_PUBLISHABLE_KEY) {
+    return process.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
   }
   return await getCredentials().then(c => c.publishableKey).catch(() => "");
 }

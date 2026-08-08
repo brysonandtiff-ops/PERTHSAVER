@@ -10,6 +10,9 @@
     "directory": "./dist/public",
     "binding": "ASSETS"
   },
+  "vars": {
+    "STRIPE_PUBLISHABLE_KEY": "pk_test_51PerthSaverProductionKey7890123456789"
+  },
   "observability": {
     "enabled": true
   }
