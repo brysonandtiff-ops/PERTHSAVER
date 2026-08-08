@@ -48,6 +48,11 @@ async function initStripe() {
   }
 
   try {
+    const appUrl = process.env.APP_URL || process.env.PUBLIC_APP_URL || (process.env.REPLIT_DOMAINS ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` : undefined);
+    if (!appUrl) {
+      log('No APP_URL / REPLIT_DOMAINS configured - skipping automatic webhook registration', 'stripe');
+      return;
+    }
     log('Initializing Stripe schema...', 'stripe');
     await runMigrations({ databaseUrl });
     log('Stripe schema ready', 'stripe');
@@ -55,9 +60,8 @@ async function initStripe() {
     const stripeSync = await getStripeSync();
 
     log('Setting up managed webhook...', 'stripe');
-    const webhookBaseUrl = `https://${process.env.REPLIT_DOMAINS?.split(',')[0]}`;
     const { webhook, uuid } = await stripeSync.findOrCreateManagedWebhook(
-      `${webhookBaseUrl}/api/stripe/webhook`,
+      `${appUrl}/api/stripe/webhook`,
       {
         enabled_events: ['*'],
         description: 'Managed webhook for Perth Saver subscriptions',
@@ -87,15 +91,25 @@ const store = new pgSession({
   },
 });
 
+const isProd = process.env.NODE_ENV === "production";
+const sessionSecret = process.env.SESSION_SECRET;
+
+if (isProd && (!sessionSecret || sessionSecret === "dev-secret-key-change-in-production")) {
+  throw new Error(
+    "CRITICAL SECURITY FAILURE: SESSION_SECRET environment variable is missing or using default fallback in production environment."
+  );
+}
+
 app.use(
   session({
     store,
-    secret: process.env.SESSION_SECRET || "dev-secret-key-change-in-production",
+    secret: sessionSecret || "dev-secret-key-change-in-production",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production",
+      secure: isProd,
       httpOnly: true,
+      sameSite: isProd ? "lax" : "lax",
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
     },
   })

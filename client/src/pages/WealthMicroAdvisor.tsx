@@ -96,7 +96,7 @@ export default function WealthMicroAdvisor() {
               <p className="text-white font-semibold">{selectedTip.title}</p>
               <p className="text-white/80 text-sm">{selectedTip.tip}</p>
               <Button
-                onClick={() => setCompleted(new Set([...completed, selectedTip.id]))}
+                onClick={() => setCompleted(new Set([...Array.from(completed), selectedTip.id]))}
                 disabled={completed.has(selectedTip.id)}
                 className={`w-full rounded-lg ${completed.has(selectedTip.id) ? "bg-cyan-500/20 text-cyan-300" : "bg-fuchsia-500 text-white hover:bg-fuchsia-600"}`}
                 data-testid="button-implement"

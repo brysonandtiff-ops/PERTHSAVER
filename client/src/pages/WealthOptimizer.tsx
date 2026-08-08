@@ -53,7 +53,7 @@ export default function WealthOptimizer() {
         className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 space-y-6 sm:space-y-8 lg:space-y-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.4,  }}
       >
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">

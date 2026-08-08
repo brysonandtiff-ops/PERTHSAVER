@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Fuel, MapPin, TrendingDown, Clock, ExternalLink, Search, Droplets, Zap } from "lucide-react";
+import { DataProvenanceBadge } from "@/components/DataProvenanceBadge";
 
 interface FuelPriceRaw {
   id: string;
@@ -135,10 +136,12 @@ export default function FuelPrices() {
                 <p className="text-sm text-white/60">Compare prices across WA stations</p>
               </div>
             </div>
-            <Badge className={`${isLiveData ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'} text-xs gap-1`}>
-              <Clock className="w-3 h-3" />
-              {isLiveData ? 'Live' : 'Cached'}
-            </Badge>
+            <DataProvenanceBadge
+              sourceName="FuelWatch WA"
+              confidence="official"
+              fetchedAt={data?.lastUpdated}
+              isStale={!isLiveData}
+            />
           </div>
         </div>
 

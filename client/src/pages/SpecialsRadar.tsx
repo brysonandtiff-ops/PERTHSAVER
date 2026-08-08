@@ -156,7 +156,6 @@ function UltraRadarAnimation({ isScanning }: { isScanning: boolean }) {
               duration: 2 + Math.random() * 2,
               delay: Math.random() * 3,
               repeat: Infinity,
-              ease: "easeOut",
             }}
           />
         ))}

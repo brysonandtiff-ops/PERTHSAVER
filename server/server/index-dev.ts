@@ -8,7 +8,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 
 import runApp from "./app";
 
-import viteConfig from "../vite.config";
+import viteConfig from "../../vite.config";
 
 const viteLogger = createLogger();
 

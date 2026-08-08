@@ -45,22 +45,28 @@ async function getCredentials() {
   };
 }
 
-export async function getUncachableStripeClient() {
-  const { secretKey } = await getCredentials();
-
-  return new Stripe(secretKey, {
-    apiVersion: '2025-08-27.basil',
-  });
+export async function getStripeSecretKey() {
+  if (process.env.STRIPE_SECRET_KEY) {
+    return process.env.STRIPE_SECRET_KEY;
+  }
+  return await getCredentials().catch(() => "");
 }
 
 export async function getStripePublishableKey() {
-  const { publishableKey } = await getCredentials();
-  return publishableKey;
+  if (process.env.STRIPE_PUBLISHABLE_KEY) {
+    return process.env.STRIPE_PUBLISHABLE_KEY;
+  }
+  return await getCredentials().then(c => c.publishableKey).catch(() => "");
 }
 
-export async function getStripeSecretKey() {
-  const { secretKey } = await getCredentials();
-  return secretKey;
+export async function getUncachableStripeClient() {
+  const secretKey = await getStripeSecretKey();
+  if (!secretKey) {
+    throw new Error('STRIPE_SECRET_KEY is not configured');
+  }
+  return new Stripe(secretKey, {
+    apiVersion: '2025-08-27.basil',
+  });
 }
 
 let stripeSync: any = null;

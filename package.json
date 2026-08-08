@@ -1,14 +1,15 @@
 {
-  "name": "rest-express",
+  "name": "perth-saver",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
     "dev:client": "vite dev --port 5000",
     "dev": "NODE_ENV=development tsx server/index-dev.ts",
-    "build": "vite build && esbuild server/index-prod.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js",
+    "build": "vite build && esbuild server/server/index-prod.ts --platform=node --bundle --format=esm --outfile=dist/index.js",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
+    "test": "tsx --test tests/unit/*.test.ts tests/e2e/*.test.ts",
     "db:push": "drizzle-kit push"
   },
   "notes": "removed framer motion dependency",
@@ -118,7 +119,8 @@
     "tailwindcss": "^4.1.14",
     "tsx": "^4.20.5",
     "typescript": "5.6.3",
-    "vite": "^7.1.9"
+    "vite": "^7.1.9",
+    "wrangler": "^4.120.0"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
