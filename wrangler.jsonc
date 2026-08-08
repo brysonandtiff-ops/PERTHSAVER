@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "perthsaver",
-  "main": "server/server/index-worker.ts",
+  "main": "dist/worker.js",
   "compatibility_date": "2026-08-08",
   "compatibility_flags": [
     "nodejs_compat"
