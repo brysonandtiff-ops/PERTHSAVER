@@ -6,27 +6,26 @@ import perthSaverLogo from "@assets/generated_images/metallic_piggy_bank_coin_lo
 const footerLinks = {
   platform: [
     { name: "Dashboard", href: "/dashboard" },
-    { name: "Deal Finder", href: "/promo-finder" },
-    { name: "Groceries", href: "/grocery-comparison" },
+    { name: "Deal Finder", href: "/deals" },
+    { name: "Groceries", href: "/groceries" },
     { name: "Utilities", href: "/utilities" },
-    { name: "AI Coach", href: "/financial-coach" },
+    { name: "AI Coach", href: "/coach" },
   ],
   community: [
-    { name: "Forum", href: "/community-forum" },
+    { name: "Forum", href: "/community" },
     { name: "Leaderboard", href: "/leaderboard" },
-    { name: "Challenges", href: "/challenges" },
-    { name: "Referrals", href: "/community-sharing" },
+    { name: "Referrals", href: "/referrals" },
+    { name: "Rewards", href: "/rewards" },
   ],
   resources: [
     { name: "Pricing", href: "/pricing" },
-    { name: "Tutorials", href: "/tutorials" },
-    { name: "News", href: "/news" },
+    { name: "Fuel Prices", href: "/fuel" },
+    { name: "Rebates", href: "/rebates" },
     { name: "For Investors", href: "/investors" },
   ],
   legal: [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
+    { name: "Privacy Policy", href: "/settings" },
+    { name: "Terms of Service", href: "/settings" },
   ],
 };
 

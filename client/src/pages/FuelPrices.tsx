@@ -120,6 +120,18 @@ export default function FuelPrices() {
     return `${price.toFixed(1)}c`;
   };
 
+  const { data: suburbsData } = useQuery<{ suburbs: string[] }>({
+    queryKey: ["/api/fuel/suburbs"],
+    queryFn: async () => {
+      const res = await fetch("/api/fuel/suburbs");
+      if (!res.ok) return { suburbs: [] };
+      return res.json();
+    },
+    staleTime: 1000 * 60 * 60,
+  });
+
+  const popularSuburbs = ["Scarborough", "Innaloo", "Joondalup", "Fremantle", "Perth", "Morley", "Rockingham", "Mandurah"];
+
   return (
     <div className="min-h-screen px-4 py-6">
       <div className="max-w-3xl mx-auto">
@@ -205,7 +217,7 @@ export default function FuelPrices() {
           </div>
         </Card>
 
-        <div className="flex gap-2 mb-4 flex-wrap">
+        <div className="flex gap-2 mb-2 flex-wrap">
           <div className="relative flex-1 min-w-48">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
             <Input
@@ -226,6 +238,41 @@ export default function FuelPrices() {
               <SelectItem value="premium">Premium 98</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+
+        {/* Suburb Quick-Chips */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 no-scrollbar">
+          <span className="text-[11px] text-white/40 font-medium mr-1 flex-shrink-0">Suburbs:</span>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSearchQuery("")}
+            className={`h-7 px-2.5 text-xs rounded-full flex-shrink-0 ${
+              searchQuery === ""
+                ? "bg-purple-500/20 text-purple-300 border border-purple-500/30"
+                : "bg-white/5 text-white/60 hover:text-white"
+            }`}
+          >
+            All
+          </Button>
+          {popularSuburbs.map((suburb) => {
+            const isSelected = searchQuery.toLowerCase() === suburb.toLowerCase();
+            return (
+              <Button
+                key={suburb}
+                variant="ghost"
+                size="sm"
+                onClick={() => setSearchQuery(suburb)}
+                className={`h-7 px-2.5 text-xs rounded-full flex-shrink-0 ${
+                  isSelected
+                    ? "bg-purple-500/20 text-purple-300 border border-purple-500/30"
+                    : "bg-white/5 text-white/60 hover:text-white"
+                }`}
+              >
+                {suburb}
+              </Button>
+            );
+          })}
         </div>
 
         {isLoading ? (

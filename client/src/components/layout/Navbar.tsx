@@ -253,7 +253,18 @@ export function Navbar() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-white/10" />
-              <DropdownMenuItem className="text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg cursor-pointer">
+              <DropdownMenuItem
+                onClick={async () => {
+                  try {
+                    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+                    window.location.href = "/";
+                  } catch {
+                    window.location.href = "/";
+                  }
+                }}
+                className="text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg cursor-pointer"
+                data-testid="button-navbar-logout"
+              >
                 Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
