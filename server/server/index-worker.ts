@@ -1,9 +1,23 @@
 import { httpServerHandler } from "cloudflare:node";
+import { createServer } from "node:http";
 import { app } from "./app";
 import { registerRoutes } from "./routes";
 
-// Ensure API routes are registered
-await registerRoutes(app);
+const server = createServer(app);
+
+let routesRegistered = false;
+let initPromise: Promise<void> | null = null;
+
+async function ensureRoutes() {
+  if (routesRegistered) return;
+  if (!initPromise) {
+    initPromise = (async () => {
+      await registerRoutes(app);
+      routesRegistered = true;
+    })();
+  }
+  await initPromise;
+}
 
 // Express global error handler
 app.use((err: any, _req: any, res: any, _next: any) => {
@@ -13,5 +27,11 @@ app.use((err: any, _req: any, res: any, _next: any) => {
   res.status(status).json({ message });
 });
 
-// Export Cloudflare Worker HTTP Server Handler
-export default httpServerHandler(app);
+const nodeHandler = httpServerHandler(server);
+
+export default {
+  async fetch(request: Request, env: any, ctx: any) {
+    await ensureRoutes();
+    return nodeHandler.fetch(request, env, ctx);
+  },
+};
