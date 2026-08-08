@@ -118,6 +118,8 @@ export interface IStorage {
 
   // Product prices
   getProductPrices(category: string, location?: string): Promise<ProductPrice[]>;
+  getAllProductPrices(): Promise<ProductPrice[]>;
+  getProductPricesByCategory(category: string): Promise<ProductPrice[]>;
   createProductPrice(price: InsertProductPrice): Promise<ProductPrice>;
   updateProductPrice(id: string, price: number): Promise<ProductPrice | undefined>;
 
@@ -361,6 +363,21 @@ export class DrizzleStorage implements IStorage {
           eq(productPrices.location, location),
         ),
       )
+      .orderBy(productPrices.price);
+  }
+
+  async getAllProductPrices(): Promise<ProductPrice[]> {
+    return await db
+      .select()
+      .from(productPrices)
+      .orderBy(productPrices.category, productPrices.productName);
+  }
+
+  async getProductPricesByCategory(category: string): Promise<ProductPrice[]> {
+    return await db
+      .select()
+      .from(productPrices)
+      .where(eq(productPrices.category, category))
       .orderBy(productPrices.price);
   }
 

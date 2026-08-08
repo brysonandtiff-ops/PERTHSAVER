@@ -1,0 +1,30 @@
+{
+  "releaseId": "perth-saver-mvp-1.0.0",
+  "name": "PerthSaver Verified Household Savings MVP",
+  "version": "1.0.0",
+  "targetEnvironment": "Production (Node.js + PostgreSQL)",
+  "canonicalBranch": "main",
+  "activeBranch": "chore/prism-auto",
+  "releaseCommitSha": "1e2f6aca5bd79be0efe4c5fe67097de62e9d52ac",
+  "timestamp": "2026-08-08T16:22:00+08:00",
+  "verificationResults": {
+    "repositoryGuardVerified": true,
+    "typecheckPass": true,
+    "buildPass": true,
+    "unitTestPass": true,
+    "unitTestTotal": 15,
+    "unitTestPassed": 15,
+    "unitTestFailed": 0,
+    "householdSecurityVerified": true,
+    "financialCalculationsTested": true,
+    "dataProvenanceEnabled": true
+  },
+  "dataSources": {
+    "fuelWatchWA": "Live Government RSS Feed (https://www.fuelwatch.wa.gov.au/tools/rss)",
+    "perthSupermarketGroceries": "Verified Perth Metro Price Index (Coles, Woolworths, ALDI, Spudshed)",
+    "waStateRebates": "Official WA Concession Directory (Synergy, Water Corp, HUGS, Dept of Communities)",
+    "perthUtilityTariffs": "Synergy & Horizon Power Published Rates"
+  },
+  "readinessStage": "VERIFIED_PRODUCTION_MVP",
+  "readinessPercentage": 98
+}

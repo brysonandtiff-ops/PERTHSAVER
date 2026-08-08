@@ -26,6 +26,10 @@ import { getStripePublishableKey } from "./stripeClient";
 import { generateWithFallback, AVAILABLE_MODELS, type AIModel, type AIMessage } from "./aiModels";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  app.get("/api/health", (_req, res) => {
+    res.json({ status: "ok", service: "perthsaver", timestamp: new Date().toISOString() });
+  });
+
   // MARK: Auth Routes V3
   app.post("/api/auth/signup", async (req, res) => {
     try {

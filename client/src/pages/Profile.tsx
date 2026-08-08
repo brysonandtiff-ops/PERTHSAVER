@@ -48,7 +48,7 @@ function AnimatedValue({ value, prefix = "", suffix = "" }: { value: string; pre
     <motion.span
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4,  }}
     >
       {prefix}{value}{suffix}
     </motion.span>

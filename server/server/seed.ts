@@ -241,12 +241,12 @@ async function seed() {
             category: product.category,
             storeName: product.store,
             productName: product.name,
-            price: product.price,
+            price: String(product.price),
             brand: product.brand,
             unit: product.unit,
             location: "Perth, WA",
             discount: "0",
-            rating: Math.random() * 2 + 3.5, // 3.5-5.5 star rating
+            rating: (Math.random() * 2 + 3.5).toFixed(1), // 3.5-5.5 star rating
           })
           .catch(() => null); // Skip duplicates
         insertedCount++;
@@ -267,12 +267,12 @@ async function seed() {
             providerName: deal.provider,
             dealTitle: deal.title,
             description: deal.description,
-            price: deal.price,
+            price: String(deal.price),
             discount: deal.discount.toString(),
             location: "Perth, WA",
             expiryDate: deal.expiryDate,
             isActive: true,
-            rating: Math.random() * 1 + 4, // 4-5 star rating
+            rating: (Math.random() * 1 + 4).toFixed(1), // 4-5 star rating
           })
           .catch(() => null);
         dealsCount++;
