@@ -73,3 +73,22 @@ Authorised cloud agents may run **24/7** on feature branches through FIND→FINI
 
 - Merge, release, and payment go-lives remain **phone-gated**.
 - Never invent **GREEN**. `UNKNOWN` = fail-closed.
+
+
+---
+
+## Dev GO / Lightning / Own model (2026-11-24)
+
+After the ecosystem completion wave merged, every game and software repo keeps these operator commands (run from the S.I.R.E. checkout):
+
+| Command | Purpose |
+| :--- | :--- |
+| `python -m sire audit-go` | Fleet clean-tree + sync + Git Stop GO audit |
+| `python -m sire lightning-team` | Fastest build team + agent roster (DEFINED, not live spawn) |
+| `python -m sire axiom train\|status\|exam\|judge` | S.I.R.E. owned AXIOM-1 law model |
+| `python -m sire git-stop check` | Merge/hazard stop authority |
+
+Docs in S.I.R.E.: `docs/DEV_GO_CLEAN_AUDIT.md`, `docs/LIGHTNING_FASTEST_BUILD_TEAM.md`, `docs/SIRE_OWN_MODEL_TRAIN.md`.
+
+Status honesty: clean git ≠ Horizon/KRAIT/ChatGPT certified. AXIOM may be `TRAINED_NOT_SEALED` until final exam thresholds PASS.
+
