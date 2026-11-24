@@ -52,7 +52,7 @@ Merge, production deploy, and spend-related releases stay **owner phone-gated**.
 2. Close remaining production gaps: live data provenance verification, production authentication, payment verification, compliance, and automated release evidence.
 3. Keep FuelWatch / grocery / rebates providers labelled with freshness and confidence — no silent fake “live” badges.
 4. Re-run typecheck + production build after material server/client changes.
-5. Owner phone acceptance before calling the product release-ready.
+5. Owner phone acceptance before any release claim (product remains **HOLD** until then).
 
 ---
 
