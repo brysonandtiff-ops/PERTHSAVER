@@ -106,3 +106,11 @@ Before PerthSaver is described as production ready, complete these gates:
 8. Publish one named-SHA production truth report.
 
 Track the closeout in **issue #2: Agent 09/20 — Convert PerthSaver into a verified Perth household-savings platform**.
+
+---
+
+## S.I.R.E. completion & build laws
+
+This repository follows S.I.R.E. Canonical Step Building Laws (**FIND → PLAN → BUILD → TEST → SHOW → HARDEN → PROVE → FINISH**).
+
+See [`docs/SIRE_COMPLETION_AND_BUILD_LAWS.md`](docs/SIRE_COMPLETION_AND_BUILD_LAWS.md) for this product’s completion plan, Dev GO / lightning / AXIOM operator pointers, and honest HOLD vocabulary. Do not treat clean git as product certification.
